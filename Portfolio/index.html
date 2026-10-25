@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dev Kyng — Web Developer and Automation Builder.">
+  <title>Dev Kyng | Web Developer and Automation Builder</title>
+  <style>
+    /* Replace the portrait and project image placeholders when the approved assets are available. */
+    :root {
+      --blue: #005DF6; --blue-dark: #004BCB; --navy: #0A1830; --ink: #0A1830;
+      --body: #5B6470; --surface: #F3F5F9; --white: #FFFFFF; --line: #E3E7EE;
+      --panel: #16263F; --radius-lg: 32px; --radius-md: 20px; --pill: 999px;
+      --max: 1200px; --shadow: 0 14px 35px rgba(10, 24, 48, .07);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--surface); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.55; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; }
+    .wrap { width: min(var(--max), calc(100% - 48px)); margin-inline: auto; }
+    .surface { background: var(--white); border-radius: var(--radius-lg); margin: 16px auto; padding: 96px 0; }
+    .eyebrow, .muted-label { color: var(--body); font-size: .68rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
+    .eyebrow { color: var(--blue); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { line-height: 1.08; letter-spacing: -.055em; }
+    h1 { font-size: clamp(3rem, 7vw, 5.8rem); margin-bottom: 18px; }
+    h2 { font-size: clamp(2rem, 4vw, 3.25rem); margin-bottom: 18px; }
+    h3 { font-size: 1.1rem; letter-spacing: -.025em; }
+    .accent { color: var(--blue); }
+    .body-copy { color: var(--body); font-size: .84rem; }
+    .focusable:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+    .site-nav { position: sticky; top: 16px; z-index: 20; width: min(920px, calc(100% - 48px)); margin: 16px auto -74px; }
+    .nav-pill { min-height: 54px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; padding: 0 22px; border-radius: var(--pill); background: var(--navy); color: var(--white); box-shadow: 0 12px 28px rgba(10, 24, 48, .13); }
+    .nav-links { display: flex; align-items: center; gap: 18px; }
+    .nav-links.right { justify-content: flex-end; }
+    .nav-links a { color: #d8e1ee; font-size: .64rem; font-weight: 500; white-space: nowrap; }
+    .nav-links a:hover, .nav-links a.active { color: var(--blue); }
+    .nav-brand { color: var(--white); font-size: .78rem; font-weight: 700; text-align: center; white-space: nowrap; }
+    .nav-toggle { display: none; border: 0; background: transparent; color: var(--white); font: inherit; font-weight: 600; }
+
+    .hero { padding-top: 126px; padding-bottom: 86px; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 64px; }
+    .hello { position: relative; display: inline-block; padding: 5px 14px; border: 1px solid var(--line); border-radius: var(--pill); background: var(--white); color: var(--body); font-size: .68rem; margin-bottom: 16px; }
+    .hello svg { position: absolute; width: 22px; height: 22px; top: -13px; right: -14px; }
+    .hero h1 { max-width: 510px; }
+    .hero h1 .name { display: block; color: var(--blue); }
+    .hero-role { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 600; margin-bottom: 18px; }
+    .hero-text { max-width: 480px; color: var(--body); font-size: .88rem; }
+    .hero-photo-wrap { position: relative; min-height: 470px; display: grid; place-items: center; }
+    .hero-photo-wrap::before { content: ""; position: absolute; width: min(420px, 85%); aspect-ratio: 1; border-radius: 50%; background: var(--blue); }
+    .asset-frame { position: relative; overflow: hidden; }
+    .asset-frame img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .hero-photo { width: min(370px, 76%); height: 440px; z-index: 1; border-radius: 190px 190px 20px 20px; }
+    .asset-frame.missing { display: grid; place-items: center; background: var(--surface); border: 1px solid var(--line); }
+    .asset-frame.missing::after { content: attr(data-filename); position: absolute; inset: 0; display: grid; place-items: center; padding: 20px; color: var(--body); font-size: .78rem; text-align: center; }
+    .hero-details { position: absolute; z-index: 2; left: 0; bottom: 20px; width: 165px; padding: 16px; background: var(--white); border-radius: 16px; box-shadow: var(--shadow); }
+    .quote-mark { color: var(--blue); font-size: 2rem; line-height: .7; }
+    .hero-details p { color: var(--body); font-size: .65rem; margin: 8px 0 0; }
+    .hero-stat { position: absolute; z-index: 2; right: 0; bottom: 54px; text-align: left; }
+    .hero-stat strong { display: block; color: var(--blue); font-size: 2.1rem; line-height: 1; }
+    .hero-stat span { color: var(--body); font-size: .65rem; }
+    .hero-actions { position: absolute; z-index: 3; bottom: -4px; left: 50%; display: flex; gap: 8px; transform: translateX(-50%); white-space: nowrap; }
+    .button { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: var(--pill); padding: 10px 17px; background: var(--white); color: var(--ink); font-size: .72rem; font-weight: 600; box-shadow: var(--shadow); }
+    .button:hover { background: var(--navy); color: var(--white); }
+    .button.primary { border-color: var(--blue); background: var(--blue); color: var(--white); }
+    .button.primary:hover { background: var(--blue-dark); }
+    .button svg { width: 14px; height: 14px; }
+
+    .services-panel, .testimonials-panel { background: var(--navy); color: var(--white); border-radius: var(--radius-lg); padding: 40px; }
+    .panel-heading { display: flex; justify-content: space-between; align-items: end; gap: 32px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,.2); margin-bottom: 20px; }
+    .panel-heading h2 { margin: 0; }
+    .panel-heading p { max-width: 320px; margin: 0; color: #bec9d8; font-size: .7rem; text-align: right; }
+    .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .service-card { position: relative; min-height: 280px; padding: 22px; border-radius: var(--radius-md); background: var(--panel); overflow: hidden; }
+    .service-card.featured { background: var(--blue); }
+    .service-card h3 { margin: 0; font-size: 1.15rem; }
+    .service-card p { max-width: 300px; color: #c3cfdf; font-size: .72rem; }
+    .service-card.featured p { color: #e8efff; }
+    .service-card .card-art { position: absolute; right: 18px; bottom: 18px; left: 18px; height: 110px; border-radius: 14px; background: var(--surface); overflow: hidden; }
+    .card-art .layer { position: absolute; width: 68%; height: 85%; border: 4px solid var(--white); border-radius: 10px; background: var(--blue); box-shadow: 0 6px 13px rgba(10,24,48,.18); }
+    .card-art .layer.one { left: 14%; bottom: 9%; transform: rotate(-4deg); }
+    .card-art .layer.two { left: 23%; bottom: 5%; background: var(--navy); transform: rotate(4deg); }
+    .card-art .layer.three { left: 31%; bottom: 12%; background: var(--white); transform: rotate(1deg); }
+    .arrow-button { position: absolute; right: 16px; bottom: 14px; display: grid; place-items: center; width: 42px; height: 42px; border: 0; border-radius: 50%; background: var(--navy); color: var(--white); cursor: pointer; }
+    .featured .arrow-button { background: var(--blue); }
+    .arrow-button svg { width: 17px; height: 17px; }
+
+    .experience h2, .section-title { text-align: center; }
+    .timeline { max-width: 850px; margin: 34px auto 0; }
+    .timeline-row { display: grid; grid-template-columns: 1fr 42px 1fr; align-items: center; min-height: 76px; }
+    .timeline-left { text-align: right; padding-right: 20px; }
+    .timeline-right { padding-left: 20px; }
+    .timeline-left strong, .timeline-right strong { display: block; font-size: .78rem; }
+    .timeline-left small, .timeline-right p { color: var(--body); font-size: .64rem; margin: 3px 0 0; }
+    .timeline-mid { position: relative; align-self: stretch; display: grid; place-items: center; }
+    .timeline-mid::before { content: ""; position: absolute; top: 0; bottom: 0; border-left: 1px dashed var(--line); }
+    .timeline-dot { z-index: 1; width: 12px; height: 12px; border: 3px solid var(--white); border-radius: 50%; background: var(--navy); box-shadow: 0 0 0 1px var(--line); }
+    .timeline-dot.current { background: var(--blue); }
+
+    .portfolio-head { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .portfolio-head h2 { margin: 0; }
+    .portfolio-stage { position: relative; margin-top: 28px; padding: 0 44px; }
+    .portfolio-track { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .portfolio-track::-webkit-scrollbar { display: none; }
+    .portfolio-card { flex: 0 0 calc(50% - 9px); scroll-snap-align: start; }
+    .portfolio-image { height: 260px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); padding: 14px; }
+    .portfolio-image img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+    .portfolio-card .tags { display: flex; gap: 6px; margin-top: 12px; }
+    .tag { border: 1px solid var(--line); border-radius: var(--pill); padding: 3px 9px; color: var(--body); font-size: .58rem; }
+    .portfolio-card h3 { margin: 10px 0 4px; }
+    .project-arrow { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--blue); color: var(--white); font-size: .72rem; }
+    .portfolio-card p { color: var(--body); font-size: .7rem; margin: 0; }
+    .carousel-control { position: absolute; top: 120px; display: grid; place-items: center; width: 38px; height: 38px; border: 0; border-radius: 50%; color: var(--white); background: var(--navy); cursor: pointer; }
+    .carousel-control.next { right: 0; background: var(--blue); }
+    .carousel-control.prev { left: 0; }
+
+    .contact-cta { text-align: center; }
+    .contact-cta h2 { max-width: 600px; margin: 0 auto 24px; }
+    .email-row { display: flex; max-width: 510px; margin: 0 auto 22px; padding: 5px; border: 1px solid var(--line); border-radius: var(--pill); background: var(--white); }
+    .email-row input { flex: 1; min-width: 0; border: 0; outline: 0; padding: 10px 14px; font: inherit; font-size: .72rem; }
+    .email-row button { border: 0; border-radius: var(--pill); padding: 10px 18px; background: var(--blue); color: var(--white); font: inherit; font-size: .68rem; font-weight: 600; cursor: pointer; }
+    .contact-points { display: flex; justify-content: center; gap: 24px; color: var(--body); font-size: .62rem; }
+    .contact-points span::first-letter { color: var(--blue); }
+    .band-wrap { overflow: hidden; padding: 38px 0; }
+    .diagonal-band { width: 110%; margin-left: -5%; padding: 13px 0; background: var(--blue); color: var(--white); font-size: .68rem; font-weight: 600; text-align: center; transform: rotate(-2deg); white-space: nowrap; }
+    .diagonal-band span { margin: 0 15px; }
+    .blog-head { display: flex; justify-content: space-between; align-items: center; }
+    .blog-head h2 { margin: 0; }
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 26px; }
+    .blog-card { position: relative; height: 190px; border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--line); }
+    .blog-card::after { content: "Blog image"; position: absolute; inset: 0; display: grid; place-items: center; color: var(--body); font-size: .7rem; }
+    .blog-arrow { position: absolute; z-index: 1; right: 12px; bottom: 12px; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--navy); color: var(--white); }
+    footer { padding: 34px 0; color: var(--body); font-size: .68rem; }
+    .footer-row { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .footer-row strong { color: var(--ink); font-size: .85rem; }
+    .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+    .footer-links a:hover { color: var(--blue); }
+    @media (max-width: 800px) {
+      .site-nav { width: 100%; top: 0; margin: 0; padding: 0 18px; }
+      .nav-pill { border-radius: 0; grid-template-columns: 1fr auto; padding: 0 18px; }
+      .nav-brand { text-align: left; }
+      .nav-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 54px; right: 0; left: 0; padding: 10px 18px 16px; background: var(--navy); flex-direction: column; align-items: stretch; gap: 0; }
+      .nav-links.right { justify-content: initial; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.14); }
+      .nav-links a:last-child { border: 0; }
+      .hero { padding-top: 96px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 34px; }
+      .hero-photo-wrap { order: -1; min-height: 390px; }
+      .hero-photo { height: 360px; }
+      .hero-details { left: 0; bottom: 4px; }
+      .hero-stat { right: 0; bottom: 38px; }
+      .panel-heading, .portfolio-head, .blog-head { align-items: flex-start; flex-direction: column; }
+      .panel-heading p { text-align: left; }
+      .portfolio-card { flex-basis: 88%; }
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 28px, 480px); }
+      .surface { margin: 8px auto; padding: 64px 0; border-radius: 24px; }
+      .services-panel, .testimonials-panel { padding: 24px 16px; border-radius: 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { min-height: 260px; }
+      .hero { padding-top: 82px; }
+      .hero-photo-wrap { min-height: 350px; }
+      .hero-photo { width: 72%; height: 315px; }
+      .hero-details { width: 145px; }
+      .hero-stat strong { font-size: 1.6rem; }
+      .timeline-row { grid-template-columns: 1fr 30px 1fr; }
+      .timeline-left { padding-right: 10px; }
+      .timeline-right { padding-left: 10px; }
+      .contact-points { align-items: center; flex-direction: column; gap: 7px; }
+      .email-row { align-items: stretch; flex-direction: column; border-radius: 18px; }
+      .email-row button { border-radius: 12px; }
+      .footer-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <div class="nav-pill">
+      <div class="nav-links left">
+        <a class="active" href="#home">Home</a><a href="#services">Services</a>
+      </div>
+      <a class="nav-brand" href="#home">Dev Kyng</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-right">Menu</button>
+      <div class="nav-links right" id="nav-right">
+        <a href="#portfolio">Portfolio</a><a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="surface hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="hello">Hello!<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18c5-1 7-7 8-13m0 0 2 4m-2-4-4 1m9 5 3 1m-2-3 1 3" fill="none" stroke="#005DF6" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+          <h1>I'm <span class="name">Dev Kyng</span><span>Web Developer</span></h1>
+          <p class="hero-role">and Automation Builder</p>
+          <div class="hero-actions"><a class="button primary" href="#portfolio">Portfolio <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3 13 9-9M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a><a class="button" href="#contact">Hire Me</a></div>
+        </div>
+        <div class="hero-photo-wrap">
+          <div class="asset-frame hero-photo" data-filename="images/port2.jpg"><img src="images/port2.jpg" alt="Portrait of Dev Kyng" onerror="this.parentElement.classList.add('missing'); this.hidden=true"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="surface" id="services">
+      <div class="wrap services-panel">
+        <div class="panel-heading"><h2>My <span class="accent">Services</span></h2><p>Practical digital solutions built around clear goals and useful interfaces.</p></div>
+        <div class="services-grid">
+          <article class="service-card featured"><span class="muted-label">01</span><h3>Business Websites</h3><p>Modern, fast websites for small businesses, from no site or an outdated one to a site that brings in customers.</p><div class="card-art"><span class="layer one"></span><span class="layer two"></span><span class="layer three"></span></div><a class="arrow-button" href="#contact" aria-label="Discuss Business Websites"><svg viewBox="0 0 20 20"><path d="m5 15 9-9M8 6h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></article>
+          <article class="service-card"><span class="muted-label">02</span><h3>Web Applications</h3><p>Interactive tools that work in the browser: trackers, dashboards, forms that save and filter.</p><div class="card-art"><span class="layer one"></span><span class="layer two"></span><span class="layer three"></span></div><a class="arrow-button" href="#contact" aria-label="Discuss Web Applications"><svg viewBox="0 0 20 20"><path d="m5 15 9-9M8 6h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="surface" id="portfolio"><div class="wrap"><div class="portfolio-head"><h2>Let's Have a Look at my <span class="accent">Portfolio</span></h2><a class="button primary" href="#portfolio">See More</a></div>
+      <div class="portfolio-stage"><button class="carousel-control prev" type="button" aria-label="Previous projects">←</button><div class="portfolio-track">
+        <article class="portfolio-card"><div class="asset-frame portfolio-image missing" data-filename="images/rentmate.png"><img src="images/rentmate.png" alt="RentMate prototype screenshot" onerror="this.parentElement.classList.add('missing'); this.hidden=true"></div><div class="tags"><span class="tag">In development</span><span class="tag">Build not started</span><span class="tag">Prototype / Demo</span></div><h3>RentMate <span class="project-arrow">↗</span></h3><p>Student housing marketplace for FUT Minna students. Find listings, contact operators on WhatsApp, and find roommates, with verified operators and checked listings.</p><a class="button" href="https://rentmate-prototype-1ryb.bolt.host/" target="_blank" rel="noopener">Prototype / Demo</a></article>
+        <article class="portfolio-card"><div class="asset-frame portfolio-image missing" data-filename="images/passify.png"><img src="images/passify.png" alt="Passify project screenshot" onerror="this.parentElement.classList.add('missing'); this.hidden=true"></div><div class="tags"><span class="tag">In development</span><span class="tag">Not launched</span></div><h3>Passify <span class="project-arrow">↗</span></h3><p>Free, mobile-first exam preparation for WAEC and NECO students. Students learn through structured topics, practise questions for each topic, and use a timed CBT practice mode.</p></article>
+        <article class="portfolio-card"><div class="asset-frame portfolio-image missing" data-filename="images/growstack.png"><img src="images/growstack.png" alt="GrowStack prototype screenshot" onerror="this.parentElement.classList.add('missing'); this.hidden=true"></div><div class="tags"><span class="tag">In development</span><span class="tag">Client project</span><span class="tag">Prototype / Demo</span></div><h3>GrowStack <span class="project-arrow">↗</span></h3><p>Knowledge-streaming platform for African youth, featuring Spotify-like reading playlists, Reader and Creator roles, and a PWA-first experience designed for low-end Android devices. Blueprint signed off.</p><a class="button" href="https://growstack-reading-pl-5hza.bolt.host/" target="_blank" rel="noopener">Prototype / Demo</a></article>
+      </div><button class="carousel-control next" type="button" aria-label="Next projects">→</button></div>
+    </div></section>
+
+    <section class="surface contact-cta" id="contact"><div class="wrap"><h2>Have An Awesome Project Idea? <span class="accent">Let's Discuss</span></h2><a class="button primary" href="mailto:devkyng.dev@gmail.com">devkyng.dev@gmail.com</a><div class="contact-points"><a href="https://github.com/DevKyng" target="_blank" rel="noopener">GitHub</a><a href="https://x.com/KTallext6524" target="_blank" rel="noopener">X</a></div></div></section>
+    <div class="band-wrap"><div class="diagonal-band">Web Design <span>+</span> App Design <span>+</span> Dashboard <span>+</span> Automation <span>+</span> Landing Page</div></div>
+  </main>
+
+  <footer><div class="wrap footer-row"><div><strong>Dev Kyng</strong><br><a href="mailto:devkyng.dev@gmail.com">devkyng.dev@gmail.com</a></div><div class="footer-links"><a href="https://github.com/DevKyng" target="_blank" rel="noopener">GitHub</a><a href="https://x.com/KTallext6524" target="_blank" rel="noopener">X</a><span>© 2026</span></div></div></footer>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var toggle = document.querySelector(".nav-toggle");
+      var links = document.querySelector(".nav-links.right");
+      var track = document.querySelector(".portfolio-track");
+      var cards = document.querySelectorAll(".portfolio-card");
+      var missing = document.querySelectorAll(".asset-frame img");
+      missing.forEach(function (image) {
+        if (image.complete && image.naturalWidth === 0) {
+          image.parentElement.classList.add("missing");
+          image.hidden = true;
+        }
+      });
+      toggle.addEventListener("click", function () {
+        var open = links.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(open));
+        toggle.textContent = open ? "Close" : "Menu";
+        if (open) links.querySelector("a").focus();
+      });
+      links.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          links.classList.remove("open"); toggle.setAttribute("aria-expanded", "false"); toggle.textContent = "Menu";
+        });
+      });
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && links.classList.contains("open")) {
+          links.classList.remove("open"); toggle.setAttribute("aria-expanded", "false"); toggle.textContent = "Menu"; toggle.focus();
+        }
+      });
+      document.querySelector(".carousel-control.next").addEventListener("click", function () { track.scrollBy({ left: track.clientWidth * .8, behavior: "smooth" }); });
+      document.querySelector(".carousel-control.prev").addEventListener("click", function () { track.scrollBy({ left: -track.clientWidth * .8, behavior: "smooth" }); });
+      void cards;
+    });
+  </script>
+</body>
+</html>
